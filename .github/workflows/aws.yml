@@ -54,8 +54,7 @@ jobs:
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
       run: |
-        ls -al $HOME/
-        aws s3 cp $HOME/.docker/config.json s3://AWS_S3_BUCKET/ --quiet
+        aws s3 cp $HOME/.docker/config.json s3://$AWS_S3_BUCKET/ --quiet
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
