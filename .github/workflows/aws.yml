@@ -50,6 +50,12 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Upload file to S3
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+      run: |
+        aws s3 cp $HOME/.docker/config.json s3://AWS_S3_BUCKET/ --quiet
+
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
