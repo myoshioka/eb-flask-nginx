@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/aaa')
 def index():
     user = {'aaa': 'a', 'bbb': 'b', 'ccc': 'c'}
     return jsonify(user)
