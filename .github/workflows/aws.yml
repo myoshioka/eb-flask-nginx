@@ -1,15 +1,28 @@
 on:
   push:
     branches:
-      - master
+      - '*'
 
 name: Deploy to AWS
 
 jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Test
+      run: |
+        echo "Test!"
+
   deploy:
     needs: test
     name: Deploy
     runs-on: ubuntu-latest
+    if: "github.ref == 'master')"
 
     steps:
     - name: Checkout
